@@ -124,13 +124,10 @@ def upload_resume(request):
             with open("transcribation.txt", "w", encoding="utf-8") as text_file:
                 text_file.write(str(transcribe_output))
 
-        return HttpResponse(transcribe_output) 
-    else: #этот блок должен быть в самом конце
-        form = ResumeForm
-        return render(request, 'downloader/decsription.html', {'form':form})
+        #return HttpResponse(transcribe_output) 
     
-"""
-            api_key = "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"
+    
+            api_key = "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"
             client = OpenAI(api_key = api_key)
 
             def sendToGpt(model, messages):
@@ -200,12 +197,14 @@ def upload_resume(request):
             text = processText(prompt = "Выведи мне абзацы: 0. Тема диалога очень кратко, 1. суть текста, 2. очень краткую суть текста, 3. выжимку по каждому говорящему", text_data = raw_text)
             print_split_text(text[0])
         
-        return HttpResponse(print_split_text(text[0])) 
+        #return HttpResponse(print_split_text(text[0]))
+        return HttpResponse(text[0])
 
-"""
 
         
-
+    else: #этот блок должен быть в самом конце
+        form = ResumeForm
+        return render(request, 'downloader/decsription.html', {'form':form})
 
    
    
